@@ -1,0 +1,107 @@
+/* src/components/Login.css - Tema Claro */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    width: 100vw;
+    /* Cor escura para melhor leitura */
+    background-color: #ffffff;
+    /* Fundo branco puro */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #4CAF50;
+    /* Tom mais escuro para contraste */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 100vh;
+    background-color: #f9f9f9;
+   
+    
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #4CAF50;
+    font-weight: bolder;
+}
+
+.login-input-password,.login-input-username {
+    padding: 10px;
+    margin: 3px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+input:focus {
+    border-color: #4CAF50;
+}
+
+.login-btn {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 7vw;
+    transition: background 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #049009;
+
+}
+
+
+
+.error-message {
+    color: #d9534f;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+
+.login-banner{
+    background-image: url('../assets/img/Foto-Fachada.png');
+    background-size: cover; /* Faz a imagem cobrir todo o elemento sem distorcer */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+
+    width: 75vw;
+    height: 100vh;
+    display: flex; /* Caso tenha conteúdo dentro, isso ajuda a alinhar */
+    justify-content: center;
+    align-items: center;
+}
