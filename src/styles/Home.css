@@ -47,20 +47,3 @@ h2 {
 
 /* Outros estilos semelhantes aos fornecidos */
 
-input,
-button {
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #049009;
-}

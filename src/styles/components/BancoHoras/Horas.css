@@ -1,0 +1,67 @@
+.horas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Outras estilizações que você desejar */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botão do dropdown */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px transparent;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.dropbtn:hover{
+  background-color: #16a403;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #16a403;
+}
+/* Conteúdo do dropdown (inicialmente escondido) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Itens da lista */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Hover nos itens */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Classe que mostra o dropdown */
+.dropdown-content.show {
+  display: block;
+}
+
+
+.input-datetime{
+  
+}
