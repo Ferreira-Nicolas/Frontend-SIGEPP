@@ -22,7 +22,7 @@
 }
 
 
-.dropbtn:hover{
+.dropbtn:hover {
   background-color: #16a403;
   color: rgb(0, 0, 0);
   padding: 5px 10px;
@@ -32,6 +32,7 @@
   border-radius: 5px;
   border: 2px solid #16a403;
 }
+
 /* Conteúdo do dropdown (inicialmente escondido) */
 .dropdown-content {
   display: none;
@@ -59,9 +60,158 @@
 /* Classe que mostra o dropdown */
 .dropdown-content.show {
   display: block;
+  padding: 10px;
 }
 
 
-.input-datetime{
-  
+.input-datetime {
+  width: 100%;
+  max-width: 250px;
+  padding: 8px 18px;
+  border: 1px solid #16a403;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+input, textarea{
+  background-color: #ffff;
+  width: 100%;
+  max-width: 250px;
+  padding: 8px 18px;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #838383;
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown-content div{
+  padding: 3px;
+  border-radius: 8px;
+}
+
+/* Hover nos itens do dropdown que são divs */
+.dropdown-content div:hover {
+  background-color: #8de782;
+  color: black;
+  cursor: pointer;
+}
+
+.label-evento{
+  font-size: 16px;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Espaço opcional entre a label e o input */
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
+}
+
+.justificativa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Espaço opcional entre a label e o input */
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
+}
+
+#justificativa{
+  width: 20vw;
+  height: 10vh;
+}
+
+.anexar-field {
+  margin-top: 10px; /* Ajuste conforme necessário */
+}
+.anexar-btn {
+  background-color: white; /* Botão inicia branco */
+  color: #000;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  border-radius: 5px;
+  max-width: 250px;
+  font-family: "Poppins", sans-serif;
+}
+
+.anexar-btn:hover {
+  background-color: #f1f1f1;
+}
+
+.anexar-btn.file-attached {
+  background-color: #28a745; /* Botão fica verde quando um arquivo é anexado */
+  color: white;
+  border: none;
+}
+
+.anexo-success {
+  margin-top: 8px;
+  color: #28a745;
+  font-size: 14px;
+}
+
+/* Container das abas com posição relativa para o indicador */
+.tab-container {
+  position: relative;
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/* Estilo para cada aba */
+.tab-button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 5px 10px;  /* Tamanho menor */
+  cursor: pointer;
+  font-size: 14px;    /* Fonte menor */
+  font-family: "Poppins", sans-serif;
+  color: #555;
+  margin-right: 10px;
+}
+
+/* Aba ativa: sem fundo, somente alteração na cor */
+.tab-button.active {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Indicador que desliza entre as abas */
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: #4caf50;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+.banco-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.banco-table th,
+.banco-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.banco-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.justification-cell {
+  max-width: 150px; /* ajuste conforme necessário */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
 }

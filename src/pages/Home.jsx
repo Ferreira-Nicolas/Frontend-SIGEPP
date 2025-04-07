@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
-import HorasComponent from "../components/HorasComponent.jsx";
+import HorasComponent from "../components/BancoHoras/HorasComponent.jsx";
 // Você pode importar outros componentes conforme os itens do submenu, por exemplo:
 // import ReunioesComponent from "../components/ReunioesComponent";
 // import MetasComponent from "../components/MetasComponent";
@@ -30,9 +30,6 @@ const Home = () => {
 
       {/* Área de conteúdo principal */}
       <div className="content">
-        <div className="header">
-          <h2>{selectedMenu.charAt(0).toUpperCase() + selectedMenu.slice(1)}</h2>
-        </div>
         <div className="main-content">{renderContent()}</div>
       </div>
     </div>
