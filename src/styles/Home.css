@@ -1,5 +1,3 @@
-/* src/components/App.css */
-
 /* Reset básico */
 *,
 *::before,
@@ -21,7 +19,6 @@ body{
     display: flex;
     height: 100vh;
     width: 100vw;
-    
 }
 
 /* Conteúdo principal */
@@ -29,7 +26,6 @@ body{
     flex: 1;
     background-color: #ffffff;
     padding: 20px;
-    
 }
 
 .header {
@@ -45,5 +41,20 @@ h2 {
     color: #333;
 }
 
-/* Outros estilos semelhantes aos fornecidos */
+/* Media query para dispositivos móveis */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    height: auto; /* Ajusta para o conteúdo crescer naturalmente */
+  }
 
+  /* Se o Sidebar tem uma classe específica (ex.: .sidebar), ajuste o seu estilo */
+  .sidebar {
+    width: 100%;
+    /* Caso queira adicionar uma margem ou limitar altura, adicione aqui */
+  }
+
+  .content {
+    padding: 10px;
+  }
+}

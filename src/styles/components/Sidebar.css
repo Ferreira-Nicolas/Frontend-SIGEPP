@@ -1,4 +1,20 @@
-/* Menu lateral */
+/* Reset básico */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    z-index: -1;
+}
+
+/* =================== Desktop (Sidebar Vertical) =================== */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -15,19 +31,17 @@
     will-change: width, padding;
 }
 
-/* Sidebar recolhida */
 .sidebar.closed {
     width: 4%;
     padding: 20px 10px;
 }
 
-/* Sidebar aberta */
 .sidebar.open {
     width: 250px;
     padding: 20px;
 }
 
-/* Lista e itens */
+/* Itens da lista */
 .sidebar ul {
     display: flex;
     flex-direction: column;
@@ -67,7 +81,7 @@ i {
     align-self: center;
 }
 
-/* Botão de toggle */
+/* Botão de toggle (Desktop) */
 .toggle-btn {
     position: absolute;
     top: 20px;
@@ -96,21 +110,7 @@ i {
     opacity: 0.8;
 }
 
-.hr-divider {
-    color: #333;
-    margin: 4px 0;
-}
-
-.sidebar.closed .toggle-btn {
-    align-self: center;
-}
-
-.sidebar.closed li {
-    width: fit-content;
-    transition: width 1s ease-in-out;
-}
-
-/* Submenu com animação simples usando max-height e opacidade */
+/* Submenu com animação */
 .submenu {
     list-style: none;
     padding-left: 20px;
@@ -121,19 +121,15 @@ i {
 }
 
 .submenu.show {
-    max-height: 500px; /* Valor alto para acomodar os itens */
+    max-height: 500px;
     opacity: 1;
 }
 
-/* Se for necessário scroll, a classe scrollable define max-height fixo */
 .submenu.scrollable {
     overflow-y: auto;
-    /* Se a animação for necessária para submenus com scroll, 
-       comente a regra abaixo para deixar o valor definido em .submenu.show prevalecer */
-    /* max-height: 200px; */
 }
 
-/* Ícone de dropdown */
+/* Dropdown icon */
 .dropdown-icon {
     margin-left: auto;
     transition: transform 0.3s ease-in-out;
@@ -143,7 +139,7 @@ i {
     transform: rotate(180deg);
 }
 
-/* Estilos para a barra de pesquisa */
+/* Barra de pesquisa */
 .search-input {
     width: 100%;
     padding: 8px 18px;
@@ -161,27 +157,102 @@ i {
     cursor: pointer;
 }
 
-/* Estilização da barra de scroll */
-.submenu.scrollable::-webkit-scrollbar {
-    width: 5px;
-}
-  
-.submenu.scrollable::-webkit-scrollbar-track {
-    background: transparent;
-}
-  
-.submenu.scrollable::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-/* Responsividade */
+/* =================== Mobile (Header) =================== */
+/* =================== Mobile (Header) =================== */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 60px;
-        padding: 10px;
+    .sidebar.mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 2px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
-    .sidebar.open {
-        width: 200px;
+    
+    /* Header para mobile com layout em linha */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .mobile-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Botão de toggle dentro do header (agora sem posição absoluta) */
+    .mobile-header .toggle-btn {
+        position: relative;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #16a403;
+        /* Opcional: ajuste de margem para separar um pouco do título */
+        margin-right: 10px;
+    }
+    
+    /* A lista (ul) será renderizada apenas quando isOpen for true (via React) */
+    .sidebar.mobile ul {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width: 768px) {
+    .sidebar.mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 2px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    /* Header para mobile */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .mobile-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Botão de toggle no header mobile */
+    .sidebar.mobile .toggle-btn {
+        position: relative;
+        font-size: 24px;
+        background: none;
+        padding: 15px;
+        border: none;
+        color: #16a403;
+    }
+
+
+    
+    /* A lista (ul) será renderizada apenas quando isOpen for true (via React) */
+    .sidebar.mobile ul {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
     }
 }
