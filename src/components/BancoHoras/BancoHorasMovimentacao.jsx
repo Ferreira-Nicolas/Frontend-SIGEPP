@@ -1,6 +1,6 @@
 // BancoHoras.js
 import React from "react";
-import "../../styles/components/BancoHoras/horas.css";
+import "../../styles/components/BancoHoras/Horas.css";
 
 const BancoHoras = () => {
   // Dados de exemplo para a tabela com todas as informações

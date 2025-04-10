@@ -1,6 +1,6 @@
 // RegistrarHoras.js
 import React, { useState, useEffect, useRef } from "react";
-import "../../styles/components/BancoHoras/horas.css"
+import "../../styles/components/BancoHoras/Horas.css"
 
 const RegistrarHoras = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
