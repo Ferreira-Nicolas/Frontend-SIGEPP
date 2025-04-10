@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import HorasComponent from "../components/BancoHoras/HorasComponent.jsx";
-// Você pode importar outros componentes conforme os itens do submenu, por exemplo:
-// import ReunioesComponent from "../components/ReunioesComponent";
-// import MetasComponent from "../components/MetasComponent";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -14,23 +11,26 @@ const Home = () => {
     switch (selectedMenu) {
       case "Horas":
         return <HorasComponent />;
-      // case "Reuniões":
-      //   return <ReunioesComponent />;
-      // case "Metas":
-      //   return <MetasComponent />;
       default:
         return <p>Exibindo conteúdo de {selectedMenu}...</p>;
     }
   };
 
   return (
-    <div className="main-container">
-      {/* Sidebar como componente */}
-      <Sidebar selectedMenu={selectedMenu} onMenuClick={setSelectedMenu} />
+    <div className="home-container">
+      {/* Header sempre visível no topo */}
+      <header className="header">
+        <img
+          src="src/assets/img/Logo_SIGEPP.png"
+          alt="LOGO-SIGEPP"
+          className="logo-header"
+        />
+      </header>
 
-      {/* Área de conteúdo principal */}
-      <div className="content">
-        <div className="main-content">{renderContent()}</div>
+      {/* Área de conteúdo que contém o sidebar e o conteúdo principal */}
+      <div className="content-container">
+        <Sidebar selectedMenu={selectedMenu} onMenuClick={setSelectedMenu} />
+        <main className="content">{renderContent()}</main>
       </div>
     </div>
   );

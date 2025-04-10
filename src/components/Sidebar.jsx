@@ -22,7 +22,7 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) {
-        setIsOpen(false); // Inicia fechado no mobile (header com botão de hambúrguer)
+        setIsOpen(false); // Inicia fechado no mobile
       } else {
         setIsOpen(true); // Exibe aberto no desktop
       }
@@ -35,6 +35,7 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
   // Alterna a abertura dos submenus (mesma lógica para desktop e mobile)
   const toggleMenu = (menu) => {
     if (!isOpen) {
+      // Se estiver fechado, primeiro abre o menu principal e ativa o submenu
       setIsOpen(true);
       setOpenMenus((prev) => ({ ...prev, [menu]: true }));
       return;
@@ -42,20 +43,26 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
     setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
   };
 
+  // Alterna a abertura/fechamento do sidebar
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  // Na versão mobile, se o menu estiver fechado, exibe apenas um botão fixo para reabri-lo
+  if (isMobile && !isOpen) {
+    return (
+      <button className="mobile-toggle-btn" onClick={toggleSidebar}>
+        <i className="fa-solid fa-bars"></i>
+      </button>
+    );
+  }
 
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"} ${isMobile ? "mobile" : ""}`}>
       {isMobile ? (
-        // Bloco de header para mobile com título e botão de toggle
+        // Cabeçalho para mobile com título e botão de toggle (recolher)
         <div className="mobile-header">
           <span className="mobile-title">Menu</span>
           <button className="toggle-btn" onClick={toggleSidebar}>
-            {isOpen ? (
-              <i className="fa-solid fa-times icon-transition"></i>
-            ) : (
-              <i className="fa-solid fa-bars icon-transition"></i>
-            )}
+            <i className="fa-solid fa-times icon-transition"></i>
           </button>
         </div>
       ) : (
@@ -64,21 +71,12 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
           <i className="fa-solid fa-caret-left icon-transition"></i>
         </button>
       )}
+
       {(!isMobile || isOpen) && (
         <ul>
           {/* Barra de pesquisa */}
-          <li className="search-container">
-            {isOpen ? (
-              <input
-                type="text"
-                placeholder="Pesquisar..."
-                className="search-input"
-                ref={searchInputRef}
-              />
-            ) : (
-              <i className="fa-solid fa-magnifying-glass search-icon"></i>
-            )}
-          </li>
+
+       
 
           {/* CADASTROS */}
           <li
@@ -100,8 +98,8 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
               ></i>
             )}
           </li>
-          {isOpen && (
-            <ul className={`submenu scrollable ${openMenus["cadastros"] ? "show" : ""}`}>
+          {isOpen && openMenus["cadastros"] && (
+            <ul className="submenu scrollable show">
               <li
                 className={selectedMenu === "Reuniões" ? "active" : ""}
                 onClick={() => onMenuClick("Reuniões")}
@@ -143,8 +141,8 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
               ></i>
             )}
           </li>
-          {isOpen && (
-            <ul className={`submenu scrollable ${openMenus["movimentacoes"] ? "show" : ""}`}>
+          {isOpen && openMenus["movimentacoes"] && (
+            <ul className="submenu scrollable show">
               <li
                 className={selectedMenu === "entrada" ? "active" : ""}
                 onClick={() => onMenuClick("entrada")}

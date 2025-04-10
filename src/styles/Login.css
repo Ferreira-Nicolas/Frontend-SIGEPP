@@ -1,14 +1,14 @@
-/* src/components/Login.css - Tema Claro */
+/* src/styles/Login.css - Tema Claro */
+
 *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
-body{
+body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -17,39 +17,33 @@ body{
 .login {
     display: flex;
     flex-direction: row;
-    
     align-items: center;
     height: 100vh;
-    color: #333;
     width: 100vw;
-    /* Cor escura para melhor leitura */
+    color: #333;
     background-color: #ffffff;
-    /* Fundo branco puro */
 }
 
 h2 {
     margin-bottom: 20px;
     color: #4CAF50;
-    /* Tom mais escuro para contraste */
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
     align-items: center;
     width: 25vw;
     height: 100vh;
     background-color: #f9f9f9;
-   
-    
 }
 
 .input-group {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-
 }
 
 label {
@@ -59,7 +53,8 @@ label {
     font-weight: bolder;
 }
 
-.login-input-password,.login-input-username {
+.login-input-password,
+.login-input-username {
     padding: 10px;
     margin: 3px;
     font-size: 14px;
@@ -88,10 +83,7 @@ input:focus {
 
 .login-btn:hover {
     background-color: #049009;
-
 }
-
-
 
 .error-message {
     color: #d9534f;
@@ -99,16 +91,94 @@ input:focus {
     margin-bottom: 10px;
 }
 
-
-.login-banner{
+.login-banner {
     background-image: url('../assets/img/Foto-Fachada.png');
-    background-size: cover; /* Faz a imagem cobrir todo o elemento sem distorcer */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 75vw;
     height: 100vh;
-    display: flex; /* Caso tenha conteúdo dentro, isso ajuda a alinhar */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.logo-sigepp{
+    width: 30%;
+  }
+/* ============ Regras para mobile ============ */
+@media (max-width: 768px) {
+
+    /* A sidebar na versão mobile: fixa no topo, ocupa toda a largura e tem transição suave */
+    .sidebar.mobile {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border-bottom: 2px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.5s ease-in-out; /* Transição para mudanças de estado (open/closed) */
+    }
+  
+    /* Cabeçalho mobile: sempre visível, com layout em linha */
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    /* Título do header mobile */
+    .mobile-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    /* Botão de toggle dentro do header mobile:
+       - Removemos as posições absolutas para garantir que o botão fique no fluxo do header.
+       - Aplicamos padding e transição para que a troca de ícones (ex.: de hambúrguer para fechar) seja suave */
+    .mobile-header .toggle-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #16a403;
+      padding: 15px;
+      cursor: pointer;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+  
+    /* A lista (ul) contendo os itens do sidebar também recebe uma transição suave.
+       Usamos overflow hidden e controlamos o max-height junto com a opacidade para simular a animação */
+    .sidebar.mobile ul {
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+  
+    /* Quando a sidebar estiver fechada (classe "closed") na versão mobile,
+       a lista fica oculta com max-height zero e opacidade 0 */
+    .sidebar.mobile.closed ul {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  
+    /* Quando a sidebar estiver aberta (classe "open") na versão mobile,
+       a lista assume um max-height suficiente para exibir os itens (pode ser ajustado se necessário) */
+    .sidebar.mobile.open ul {
+      max-height: 500px; /* Valor suficientemente alto para conter o conteúdo */
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  

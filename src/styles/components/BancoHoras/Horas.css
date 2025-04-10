@@ -73,7 +73,8 @@
   font-size: 14px;
 }
 
-input, textarea{
+input,
+textarea {
   background-color: #ffff;
   width: 100%;
   max-width: 250px;
@@ -85,7 +86,7 @@ input, textarea{
   font-family: "Poppins", sans-serif;
 }
 
-.dropdown-content div{
+.dropdown-content div {
   padding: 3px;
   border-radius: 8px;
 }
@@ -97,14 +98,15 @@ input, textarea{
   cursor: pointer;
 }
 
-.label-evento{
+.label-evento {
   font-size: 16px;
 }
 
 .date-field {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Espaço opcional entre a label e o input */
+  gap: 5px;
+  /* Espaço opcional entre a label e o input */
   margin-bottom: 0.5vh;
   margin-top: 0.5vh;
 }
@@ -112,21 +114,25 @@ input, textarea{
 .justificativa-field {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Espaço opcional entre a label e o input */
+  gap: 5px;
+  /* Espaço opcional entre a label e o input */
   margin-bottom: 0.5vh;
   margin-top: 0.5vh;
 }
 
-#justificativa{
+#justificativa {
   width: 20vw;
   height: 10vh;
 }
 
 .anexar-field {
-  margin-top: 10px; /* Ajuste conforme necessário */
+  margin-top: 10px;
+  /* Ajuste conforme necessário */
 }
+
 .anexar-btn {
-  background-color: white; /* Botão inicia branco */
+  background-color: white;
+  /* Botão inicia branco */
   color: #000;
   padding: 5px 10px;
   font-size: 16px;
@@ -142,7 +148,8 @@ input, textarea{
 }
 
 .anexar-btn.file-attached {
-  background-color: #28a745; /* Botão fica verde quando um arquivo é anexado */
+  background-color: #28a745;
+  /* Botão fica verde quando um arquivo é anexado */
   color: white;
   border: none;
 }
@@ -166,9 +173,11 @@ input, textarea{
   background: none;
   border: none;
   outline: none;
-  padding: 5px 10px;  /* Tamanho menor */
+  padding: 5px 10px;
+  /* Tamanho menor */
   cursor: pointer;
-  font-size: 14px;    /* Fonte menor */
+  font-size: 14px;
+  /* Fonte menor */
   font-family: "Poppins", sans-serif;
   color: #555;
   margin-right: 10px;
@@ -209,9 +218,28 @@ input, textarea{
 }
 
 .justification-cell {
-  max-width: 150px; /* ajuste conforme necessário */
+  max-width: 150px;
+  /* ajuste conforme necessário */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: default;
+}
+
+/* Contêiner para a tabela: possibilita scroll horizontal se a tabela for maior que a tela */
+.table-container {
+  overflow-x: auto;
+}
+
+/* Media query para ajustes na tabela em dispositivos móveis */
+@media (max-width: 768px) {
+  .banco-content {
+    padding: 10px;
+  }
+
+  .banco-table th,
+  .banco-table td {
+    padding: 6px;
+    font-size: 12px;
+  }
 }
