@@ -2,298 +2,270 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 body {
-    background-color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    z-index: -1;
+  background-color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: -1;
 }
 
 /* =================== Desktop (Sidebar Vertical) =================== */
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 17vw;
-    min-width: 65px;
-    
-    background-color: #ffffff;
-    padding: 25px;
-    height: 100vh;
-    border-radius: 0 12px 12px 0;
-    border-right: 2px solid #ccc;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-    font-family: "Poppins", sans-serif;
-    transition: width 0.5s ease-in-out, padding 0.5s ease-in-out;
-    position: relative;
-    will-change: width, padding;
+  display: flex;
+  flex-direction: column;
+  width: 17vw;
+  min-width: 65px;
+  background-color: #ffffff;
+  padding: 25px;
+  /* Altura para ocupar a área abaixo do header (60px) */
+  height: calc(100vh - 60px);
+  border-radius: 0 12px 12px 0;
+  border-right: 2px solid #ccc;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  font-family: "Poppins", sans-serif;
+  transition: width 0.5s ease-in-out, padding 0.5s ease-in-out;
+  position: relative;
+  will-change: width, padding;
+  overflow-y: auto; /* Permite rolagem vertical */
+  direction: rtl; /* Barra de rolagem à esquerda */
+  z-index: 100000;
+}
+
+/* Corrige a direção do conteúdo interno */
+.sidebar > * {
+  direction: ltr;
+}
+
+/* Barra de rolagem invisível para todos os navegadores */
+/* Chrome, Edge, Safari */
+.sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+/* Firefox */
+.sidebar {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
 }
 
 .sidebar.closed {
-    width: 4%;
-    max-width: 65px;
-    padding: 20px 10px;
+  width: 4%;
+  max-width: 65px;
+  padding: 20px 10px;
 }
 
 .sidebar.open {
-    width: 250px;
-    padding: 20px;
+  width: 250px;
+  padding: 20px;
 }
 
 /* Itens da lista */
 .sidebar ul {
-    display: flex;
-    flex-direction: column;
-    z-index: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
 }
 
 .sidebar li {
-    align-self: center;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.2s, border-color 0.2s;
-    border-radius: 10px;
-    margin: 5px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
+  align-self: center;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s, border-color 0.2s;
+  border-radius: 10px;
+  margin: 5px;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .sidebar li:hover {
-    border: 2px solid #36872b;
-    background: rgba(76, 175, 80, 0.1);
+  border: 2px solid #36872b;
+  background: rgba(76, 175, 80, 0.1);
 }
 
 .sidebar li.active {
-    background-color: #16a403;
-    color: white;
+  background-color: #16a403;
+  color: white;
 }
 
 /* Ícones */
 i {
-    font-size: 20px;
-    align-self: center;
+  font-size: 20px;
+  align-self: center;
 }
 
-/* Botão de toggle (Desktop) */
+/* Botão de toggle (Desktop) - Z-index ajustado para ficar sobreposto */
 .toggle-btn {
-    position: absolute;
-    top: 20px;
-    right: -15px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 3;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #16a403;
-    color: #ffffff;
+  position: absolute;
+  top: 20px;
+  right: -15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 3000;  /* Alterado para 3000 para ficar acima de tudo */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #16a403;
+  color: #ffffff;
 }
 
 .icon-transition {
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .sidebar.closed .icon-transition {
-    transform: rotate(180deg);
-    opacity: 0.8;
+  transform: rotate(180deg);
+  opacity: 0.8;
 }
 
 /* Submenu com animação */
 .submenu {
-    list-style: none;
-    padding-left: 20px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+  list-style: none;
+  padding-left: 20px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
 .submenu.show {
-    max-height: 500px;
-    opacity: 1;
+  max-height: 500px;
+  opacity: 1;
 }
 
 .submenu.scrollable {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 /* Dropdown icon */
 .dropdown-icon {
-    margin-left: auto;
-    transition: transform 0.3s ease-in-out;
+  margin-left: auto;
+  transition: transform 0.3s ease-in-out;
 }
 
 .dropdown-icon.open {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 /* Barra de pesquisa */
 .search-input {
-    width: 100%;
-    padding: 8px 18px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 14px;
+  width: 100%;
+  padding: 8px 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 14px;
 }
 
 .search-icon {
-    font-size: 20px;
+  font-size: 20px;
+  color: #333;
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+/* =================== Mobile (Sidebar) =================== */
+@media (max-width: 768px) {
+  /* Sidebar fixa, iniciando abaixo do header */
+  .sidebar.mobile {
+    position: fixed;
+    top: 60px; /* Inicia abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.5s ease-in-out;
+    overflow-y: auto;
+    direction: rtl; /* Barra de rolagem à esquerda */
+  }
+
+  .sidebar.mobile > * {
+    direction: ltr;
+  }
+
+  /* Cabeçalho Mobile dentro do Sidebar */
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .mobile-title {
+    font-size: 18px;
+    font-weight: bold;
     color: #333;
-    display: block;
-    text-align: center;
-    margin: 10px 0;
+  }
+
+  .mobile-header .toggle-btn {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #16a403;
+    padding: 15px;
     cursor: pointer;
-}
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
 
-/* =================== Mobile (Header) =================== */
-/* =================== Mobile (Header) =================== */
-@media (max-width: 768px) {
-    .sidebar.mobile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        border-bottom: 2px solid #ccc;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-    }
+  /* Limita as regras do menu principal somente à lista de primeiro nível */
+  .sidebar.mobile > ul {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
 
-    /* Header para mobile com layout em linha */
-    .mobile-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 10px;
-        background-color: #ffffff;
-        border-bottom: 1px solid #ddd;
-    }
+  .sidebar.mobile.closed > ul {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-    .mobile-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-    }
+  .sidebar.mobile.open > ul {
+    max-height: 150vh;
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-    /* Botão de toggle dentro do header (agora sem posição absoluta) */
-    .mobile-header .toggle-btn {
-        position: relative;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #16a403;
-        /* Opcional: ajuste de margem para separar um pouco do título */
-        margin-right: 10px;
-    }
-
-    /* A lista (ul) será renderizada apenas quando isOpen for true (via React) */
-    .sidebar.mobile ul {
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-/* =================== Regras Mobile (Sidebar) =================== */
-@media (max-width: 768px) {
-    .sidebar.mobile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        border-bottom: 2px solid #ccc;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: all 0.5s ease-in-out;
-    }
-
-    /* Cabeçalho Mobile */
-    .mobile-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 10px;
-        background-color: #ffffff;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .mobile-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .mobile-header .toggle-btn {
-        position: relative;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #16a403;
-        padding: 15px;
-        cursor: pointer;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    /* Importante: limita as regras do menu principal somente à lista de primeiro nível */
-    .sidebar.mobile>ul {
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        transition: max-height 0.5s ease, opacity 0.5s ease;
-    }
-
-    .sidebar.mobile.closed>ul {
-        max-height: 0;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .sidebar.mobile.open>ul {
-        max-height: 150vh;
-        /* Valor alto para garantir que todos os itens do menu principal fiquem visíveis */
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* Botão fixo para reabrir o sidebar em mobile */
-    .mobile-toggle-btn {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background-color: #16a403;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: white;
-        z-index: 1100;
-    }
-
-
+  /* Botão fixo para reabrir o Sidebar em mobile */
+  .mobile-toggle-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #16a403;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    z-index: 3000;
+  }
 }

@@ -46,7 +46,7 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
   // Alterna a abertura/fechamento do sidebar
   const toggleSidebar = () => setIsOpen(!isOpen);
 
-  // Na versão mobile, se o menu estiver fechado, exibe apenas um botão fixo para reabri-lo
+  // Na versão mobile, se o menu estiver fechado, exibe apenas o botão fixo
   if (isMobile && !isOpen) {
     return (
       <button className="mobile-toggle-btn" onClick={toggleSidebar}>
@@ -75,8 +75,18 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
       {(!isMobile || isOpen) && (
         <ul>
           {/* Barra de pesquisa */}
-
-       
+          <li className="search-container">
+            {isOpen ? (
+              <input
+                type="text"
+                placeholder="Pesquisar..."
+                className="search-input"
+                ref={searchInputRef}
+              />
+            ) : (
+              <i className="fa-solid fa-magnifying-glass search-icon"></i>
+            )}
+          </li>
 
           {/* CADASTROS */}
           <li
@@ -158,7 +168,7 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
             </ul>
           )}
 
-          {/* Outros itens sem submenu */}
+          {/* Outros itens */}
           <li
             className={selectedMenu === "relatorios" ? "active" : ""}
             onClick={() => onMenuClick("relatorios")}

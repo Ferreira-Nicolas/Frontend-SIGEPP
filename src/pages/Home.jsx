@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* Header sempre visível no topo */}
+      {/* Header fixo no topo */}
       <header className="header">
         <img
           src="src/assets/img/Logo_SIGEPP.png"
@@ -27,7 +27,7 @@ const Home = () => {
         />
       </header>
 
-      {/* Área de conteúdo que contém o sidebar e o conteúdo principal */}
+      {/* Contêiner que agrupa o Sidebar e o conteúdo principal */}
       <div className="content-container">
         <Sidebar selectedMenu={selectedMenu} onMenuClick={setSelectedMenu} />
         <main className="content">{renderContent()}</main>

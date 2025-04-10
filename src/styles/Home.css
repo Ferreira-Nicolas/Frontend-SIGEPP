@@ -29,7 +29,7 @@ body {
   border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
-  z-index: 2000; /* Eleva o header para garantir que fique acima de outros elementos */
+  z-index: 2000; /* Header fica abaixo do botão de toggle, que terá z-index maior */
 }
 
 /* Ajuste do logo */
@@ -38,14 +38,14 @@ body {
   max-width: 170px;
 }
 
-/* Contêiner de conteúdo: abaixo do header, divide a tela em sidebar + conteúdo */
+/* Contêiner para Sidebar e conteúdo principal */
 .content-container {
   flex: 1;
   display: flex;
   overflow: hidden;
 }
 
-/* Área principal de conteúdo com scroll se necessário */
+/* Área principal de conteúdo com scroll interno */
 .content {
   flex: 1;
   background-color: #ffffff;
@@ -58,15 +58,12 @@ body {
   .home-container {
     height: auto;
   }
-  
   .content-container {
     flex-direction: column;
   }
-  
   .content {
     padding: 10px;
   }
-  
   .logo-header {
     width: 9vw;
     max-width: 170px;
