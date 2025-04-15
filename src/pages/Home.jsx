@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import HorasComponent from "../components/BancoHoras/HorasComponent.jsx";
+import LogoSigepp from '../assets/img/Logo_SIGEPP.png'
 import "../styles/Home.css";
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
       {/* Header fixo no topo */}
       <header className="header">
         <img
-          src="/src/assets/img/Logo_SIGEPP.png"
+          src={LogoSigepp}
           alt="LOGO-SIGEPP"
           className="logo-header"
         />

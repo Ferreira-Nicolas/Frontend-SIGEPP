@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
+import SigeppIcon from '../assets/img/so_logo_sigeep.png'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +29,7 @@ const Login = () => {
   return (
     <section className="login">
       <form onSubmit={handleLogin} className="login-form">
-        <img src="/src/assets/img/so_logo_sigeep.PNG" alt="LOGO-SIGEPP" className='logo-sigepp' />
+        <img src={SigeppIcon} alt="LOGO-SIGEPP" className='logo-sigepp' />
         <h2>SIGEPP</h2>
         <div className="input-group group-user">
           <label htmlFor="username">Usuário</label>
