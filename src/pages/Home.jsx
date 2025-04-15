@@ -21,7 +21,7 @@ const Home = () => {
       {/* Header fixo no topo */}
       <header className="header">
         <img
-          src="src/assets/img/Logo_SIGEPP.png"
+          src="/src/assets/img/Logo_SIGEPP.png"
           alt="LOGO-SIGEPP"
           className="logo-header"
         />

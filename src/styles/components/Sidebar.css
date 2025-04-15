@@ -22,7 +22,6 @@ body {
   min-width: 65px;
   background-color: #ffffff;
   padding: 25px;
-  /* Altura para ocupar a área abaixo do header (60px) */
   height: calc(100vh - 60px);
   border-radius: 0 12px 12px 0;
   border-right: 2px solid #ccc;
@@ -31,12 +30,10 @@ body {
   transition: width 0.5s ease-in-out, padding 0.5s ease-in-out;
   position: relative;
   will-change: width, padding;
-  overflow-y: auto; /* Permite rolagem vertical */
-  direction: rtl; /* Barra de rolagem à esquerda */
-  z-index: 100000;
+  overflow-y: none;
+  overflow-x: visible; /* Permite que o toggle button ultrapasse os limites */
 }
 
-/* Corrige a direção do conteúdo interno */
 .sidebar > * {
   direction: ltr;
 }
@@ -104,16 +101,16 @@ i {
   align-self: center;
 }
 
-/* Botão de toggle (Desktop) - Z-index ajustado para ficar sobreposto */
+/* Botão de toggle (Desktop) - Posicionado de forma que parte dele fique para fora da sidebar */
 .toggle-btn {
   position: absolute;
   top: 20px;
-  right: -15px;
+  right: -15px; /* Parte do botão ficará fora do sidebar */
+  z-index: 3000; /* Garante que o botão fique acima dos elementos adjacentes */
   background: none;
   border: none;
   cursor: pointer;
   font-size: 24px;
-  z-index: 3000;  /* Alterado para 3000 para ficar acima de tudo */
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -182,10 +179,9 @@ i {
 
 /* =================== Mobile (Sidebar) =================== */
 @media (max-width: 768px) {
-  /* Sidebar fixa, iniciando abaixo do header */
   .sidebar.mobile {
     position: fixed;
-    top: 60px; /* Inicia abaixo do header */
+    top: 60px;
     left: 0;
     width: 100%;
     background-color: #ffffff;
@@ -194,42 +190,18 @@ i {
     z-index: 1000;
     transition: all 0.5s ease-in-out;
     overflow-y: auto;
-    direction: rtl; /* Barra de rolagem à esquerda */
+    direction: rtl;
   }
 
   .sidebar.mobile > * {
     direction: ltr;
   }
 
-  /* Cabeçalho Mobile dentro do Sidebar */
-  .mobile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
+  /* Sobrescreve a posição do botão de fechar no mobile para que fique visível */
+  .sidebar.mobile .toggle-btn {
+    right: 10px;
   }
 
-  .mobile-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  .mobile-header .toggle-btn {
-    position: relative;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #16a403;
-    padding: 15px;
-    cursor: pointer;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-  }
-
-  /* Limita as regras do menu principal somente à lista de primeiro nível */
   .sidebar.mobile > ul {
     width: 100%;
     margin-top: 10px;
@@ -251,7 +223,6 @@ i {
     pointer-events: auto;
   }
 
-  /* Botão fixo para reabrir o Sidebar em mobile */
   .mobile-toggle-btn {
     position: fixed;
     top: 10px;
@@ -268,4 +239,5 @@ i {
     color: white;
     z-index: 3000;
   }
+  
 }

@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <section className="login">
       <form onSubmit={handleLogin} className="login-form">
-        <img src="src\assets\img\so_logo_sigeep.PNG" alt="LOGO-SIGEPP" className='logo-sigepp' />
+        <img src="/src/assets/img/so_logo_sigeep.PNG" alt="LOGO-SIGEPP" className='logo-sigepp' />
         <h2>SIGEPP</h2>
         <div className="input-group group-user">
           <label htmlFor="username">Usuário</label>

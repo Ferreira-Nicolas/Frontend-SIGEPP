@@ -106,79 +106,58 @@ input:focus {
 .logo-sigepp{
     width: 30%;
   }
-/* ============ Regras para mobile ============ */
+  /* ============ Regras para Mobile - Adaptado para Login ============ */
 @media (max-width: 768px) {
+  /* Altera o container principal para coluna */
+  .login {
+    flex-direction: column;
+    height: auto;
+  }
 
-    /* A sidebar na versão mobile: fixa no topo, ocupa toda a largura e tem transição suave */
-    .sidebar.mobile {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      border-bottom: 2px solid #ccc;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transition: all 0.5s ease-in-out; /* Transição para mudanças de estado (open/closed) */
-    }
-  
-    /* Cabeçalho mobile: sempre visível, com layout em linha */
-    .mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 10px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-    }
-  
-    /* Título do header mobile */
-    .mobile-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-  
-    /* Botão de toggle dentro do header mobile:
-       - Removemos as posições absolutas para garantir que o botão fique no fluxo do header.
-       - Aplicamos padding e transição para que a troca de ícones (ex.: de hambúrguer para fechar) seja suave */
-    .mobile-header .toggle-btn {
-      position: relative;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #16a403;
-      padding: 15px;
-      cursor: pointer;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-  
-    /* A lista (ul) contendo os itens do sidebar também recebe uma transição suave.
-       Usamos overflow hidden e controlamos o max-height junto com a opacidade para simular a animação */
-    .sidebar.mobile ul {
-      width: 100%;
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.5s ease;
-    }
-  
-    /* Quando a sidebar estiver fechada (classe "closed") na versão mobile,
-       a lista fica oculta com max-height zero e opacidade 0 */
-    .sidebar.mobile.closed ul {
-      max-height: 0;
-      opacity: 0;
-      pointer-events: none;
-    }
-  
-    /* Quando a sidebar estiver aberta (classe "open") na versão mobile,
-       a lista assume um max-height suficiente para exibir os itens (pode ser ajustado se necessário) */
-    .sidebar.mobile.open ul {
-      max-height: 500px; /* Valor suficientemente alto para conter o conteúdo */
-      opacity: 1;
-      pointer-events: auto;
-    }
+  /* O formulário passa a ocupar quase toda a largura e seu tamanho é ajustado */
+  .login-form {
+    width: 90%;
+    height: auto;
+    min-height: 50vh;
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Reduz a margem e o tamanho do título */
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  /* Ajusta os inputs para ocupar a largura total do container */
+  .login-input-password,
+  .login-input-username {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  /* Botão adaptado para largura total (ou 100% do container) e com espaçamento */
+  .login-btn {
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  /* Ajusta o logo, caso seja necessário aumentar um pouco no mobile */
+  .logo-sigepp {
+    width: 35%;
+    margin-bottom: 20px;
   }
   
+  /* O banner pode ter uma altura menor ou até ser opcional, conforme seu layout */
+  .login-banner {
+    display: none;
+  }
+}

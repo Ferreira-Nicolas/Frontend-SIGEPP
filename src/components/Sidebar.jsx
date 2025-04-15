@@ -59,12 +59,11 @@ const Sidebar = ({ selectedMenu, onMenuClick }) => {
     <div className={`sidebar ${isOpen ? "open" : "closed"} ${isMobile ? "mobile" : ""}`}>
       {isMobile ? (
         // Cabeçalho para mobile com título e botão de toggle (recolher)
-        <div className="mobile-header">
-          <span className="mobile-title">Menu</span>
+       
           <button className="toggle-btn" onClick={toggleSidebar}>
             <i className="fa-solid fa-times icon-transition"></i>
           </button>
-        </div>
+        
       ) : (
         // Botão de toggle para desktop (posição absoluta)
         <button className="toggle-btn" onClick={toggleSidebar}>

@@ -42,7 +42,8 @@ body {
 .content-container {
   flex: 1;
   display: flex;
-  overflow: hidden;
+  overflow: visible;
+  
 }
 
 /* Área principal de conteúdo com scroll interno */
@@ -51,6 +52,7 @@ body {
   background-color: #ffffff;
   padding: 20px;
   overflow-y: auto;
+  
 }
 
 /* Responsividade para dispositivos móveis */
