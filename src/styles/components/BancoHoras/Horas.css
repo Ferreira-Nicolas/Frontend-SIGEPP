@@ -231,6 +231,36 @@ textarea {
   overflow-x: auto;
 }
 
+.dropdown-content {
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+}
+
+/* Ajusta a seção de datas: empilha as datas verticalmente */
+.date-inicio-fim {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-datetime {
+  max-width: 100%;
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Justificativa: o textarea ocupa 100% da largura */
+#justificativa {
+  width: 100%;
+  height: 15vh;
+}
+
+/* Botão de anexar: ocupa toda a largura */
+.anexar-btn {
+  width: 100%;
+  font-size: 18px;
+}
+
 /* Media query para ajustes na tabela em dispositivos móveis */
 @media (max-width: 768px) {
   .banco-content {
@@ -241,5 +271,35 @@ textarea {
   .banco-table td {
     padding: 6px;
     font-size: 12px;
+  }
+
+  .dropdown-content {
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+  }
+
+  /* Ajusta a seção de datas: empilha as datas verticalmente */
+  .date-inicio-fim {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-datetime {
+    max-width: 100%;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  /* Justificativa: o textarea ocupa 100% da largura */
+  #justificativa {
+    width: 100%;
+    height: 15vh;
+  }
+
+  /* Botão de anexar: ocupa toda a largura */
+  .anexar-btn {
+    width: 100%;
+    font-size: 18px;
   }
 }
