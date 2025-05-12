@@ -2,17 +2,17 @@
     --gray-000: #ffffff;
     --gray-100: #e6e9f0;
     --gray-200: #cdd3e1;
-    --gray-300: #8893b1;
-    --gray-400: #616985;
-    --gray-500: #454f6a;
-    --gray-600: #282c3b;
-    --gray-700: #272f43;
+    --gray-300: #a4aab9;
+    --gray-400: #7a7d8a;
+    --gray-500: #575a63;
+    --gray-600: #35363b;
+    --gray-700: #303135;
     --gray-800: #181f2e;
-    --gray-900: #0a0f1a;
+    --gray-900: #181b20;
   
-    --primary-light: #50e74d;
-    --primary: #139b19;
-    --primary-dark: #165f06;
+    --primary-light: #d0fcca;
+    --primary: #16a403;
+    --primary-dark: #16a403;
   
     --link-color: #10b962;
     --link-hover: #0b8a60;
@@ -35,6 +35,8 @@
   
     --disabled: #555f7d;
     --text-disabled: #aab3cc;
+
+    --shadow-default: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 
     --transition-slow: all 0.8s ease-in-out;

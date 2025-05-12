@@ -1,0 +1,7 @@
+.content {
+    flex: 1;               /* ocupa todo o espaço restante junto à sidebar */
+    padding: 1.5rem;
+    overflow-y: auto;      /* rolagem interna se necessário */
+    background-color: var(--gray-50);
+  }
+  

@@ -1,0 +1,40 @@
+.menuList {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+/* contêiner dos subitens */
+.subList {
+  overflow: hidden;
+  max-height: 0;                        /* começa fechado */
+  opacity: 0;
+  margin-left: 1.5rem;
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity    0.3s ease-in-out;
+}
+
+.subList.open {
+  max-height: 500px;                    /* alto o suficiente para caber todos os itens */
+  opacity: 1;
+}
+
+/* espaçamento entre grupos (continua valendo) */
+.group + .group {
+  margin-top: 0.5rem;
+}
+
+.subList {
+  overflow: hidden;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  margin-left: 1.5rem;
+}
+.subList.open {
+  display: block;
+  transform: scaleY(1);
+  opacity: 1;
+}

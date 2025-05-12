@@ -1,0 +1,18 @@
+.subMenuItem {
+  display: block;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--gray-800);
+  transition: background 0.2s;
+}
+
+.subMenuItem:hover {
+  background-color: var(--gray-200);
+}
+
+/* estado selecionado */
+.active {
+  font-weight: 500;
+  background-color: var(--gray-300);
+}

@@ -1,0 +1,93 @@
+.sidebar {
+  position: relative;  
+  width: 15%;
+  /* min-width:22.0rem ; */
+  transition: width 0.4s ease-in-out;
+  border-right: solid 2px var(--gray-100);
+  border-radius: 0.8rem;
+  background-color: white;
+  padding: 0 1rem 0 0.5rem;
+  box-shadow: var(--shadow-default);
+}
+
+/* Estado colapsado */
+.sidebar.collapsed {
+  width: 3.8%;
+  /* min-width:2.0rem ; */
+  
+}
+
+
+
+
+/* Botão “clipado” */
+.btnCollapse {
+  position: absolute;
+  top: 110%; /* centralizado verticalmente */
+  right: -2.4rem; /* metade para fora */
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Gira o ícone quando a sidebar está colapsada */
+.sidebar.collapsed .btnCollapse {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Mobile: menu full-screen */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .openMobile {
+    display: block;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--header-height));
+    z-index: 2000;
+    overflow-y: auto;
+  }
+  .openMobile .toggleBtn {
+    display: none;
+  }
+  .closeMobile {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
+/* Botão genérico de toggle (remove estilo padrão) */
+.toggleBtn {
+  padding: 0;
+  background: none;
+  border: none;
+  background-color: var(--primary);
+margin-left: 1.6rem;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header interno da sidebar */
+.header {
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}

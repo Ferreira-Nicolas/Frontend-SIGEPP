@@ -11,18 +11,10 @@ export function Form({ children }: FormProps) {
   return (
     <form className={styles.form} action={""}>
       <div className="formField">
-        <Input/>
+        <Input id={styles.input}/>
       </div>
 
-      <div className="formField">
-        <label htmlFor="meuForm">Task</label>
-        <input id="meuForm" type="text" />
-      </div>
-
-      <div className="formField">
-        <label htmlFor="meuForm">Task</label>
-        <input id="meuForm" type="text" />
-      </div>
+      
     </form>
   );
 }

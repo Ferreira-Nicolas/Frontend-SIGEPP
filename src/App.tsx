@@ -1,13 +1,7 @@
-import { Container } from "./compomnents/Container";
+import { MainRouter } from "./Routers/MainRouter/MainRouter";
 import "./styles/global.css";
 import "./styles/theme.css";
 
 export const App = () => {
-  return (
-    <>
-    <Container>
-      1
-    </Container>
-    </>
-  );
+  return <MainRouter />;
 };

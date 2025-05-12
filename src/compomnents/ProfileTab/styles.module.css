@@ -1,0 +1,72 @@
+.profileTab {
+  display: flex;
+  align-items: center;
+  border-radius: 1.2rem;
+  padding: 0.8rem 0.4rem 2rem 0.8rem;
+  margin: 0.4rem;
+  font-size: 2rem;
+  transition: justify-content 0.3s ease;
+  border-bottom: solid 1px var(--gray-100);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Colapsado: só avatar, centralizado */
+.profileTab.collapsed {
+  justify-content: center;
+}
+
+/* Avatar (fixo) */
+.avatar {
+  width: 3.8rem;
+  height: 3.8rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--gray-200);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--gray-300);
+}
+
+/* Texto */
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.75rem;
+  opacity: 1;
+  transform: translateX(0);
+  width: auto;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out,
+    width 0.3s ease-in-out,
+    margin-left 0.3s ease-in-out;
+}
+
+/* Nome e cargo */
+.name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-lightmode);
+}
+.role {
+  font-size: 0.975rem;
+  color: var(--text-lightmode);
+  margin-top: 0.2rem;
+}
+
+/* Quando colapsar: texto “vai para dentro” e some */
+.profileTab.collapsed .info {
+  opacity: 0;
+  transform: translateX(-10px);
+  margin-left: 0;
+  width: 0;
+}

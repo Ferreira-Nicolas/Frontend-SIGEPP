@@ -1,0 +1,108 @@
+.menuItem {
+  display: flex;
+
+  align-items: center; /* centraliza ícone + texto */
+  overflow: hidden; /* esconde o texto quando sumir */
+  border-radius: 1.2rem;
+  padding-right: 0.4rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-left: 0.8rem;
+  margin: 0.4rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--text-lightmode);
+  transition: background 0.3s; /* só fundo */
+  user-select: none;
+}
+
+.group {
+  justify-content: space-between;
+}
+
+.menuItem:hover {
+  background-color: var(--primary-light);
+}
+
+/* mantém o ícone sempre centralizado */
+.menuItem.collapsed {
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+/* label e expandIcon: estado inicial */
+.label,
+.expandIcon {
+  flex-shrink: 0;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  white-space: nowrap; /* não quebra */
+}
+
+/* Quando colapsar, faz o fade e puxa para dentro */
+.menuItem.collapsed .label,
+.menuItem.collapsed .expandIcon {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+/* ícone de expandir gira quando aberto */
+.expanded .expandIcon {
+  transform: rotate(180deg);
+  transition: transform 0.25s ease;
+}
+
+/* estilo do ícone dentro do item */
+.icon {
+  width: 2rem;
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* cores de seleção */
+.active {
+  background-color: var(--primary);
+  color: white;
+}
+.active:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* níveis de indentação */
+.level1 {
+  margin-left: 2rem;
+
+  font-size: 1.8rem;
+}
+.level2 {
+  margin-left: 3rem;
+  font-size: 1.8rem;
+}
+
+.menuItem.collapsed .label,
+.menuItem.collapsed .expandIcon {
+  /* tira o flex-grow e força largura zero */
+  flex: 0 0 auto;
+  width: 0;
+  /* mantém o fade/slide que você já tem */
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+
+
+
+.label {
+  flex: 1;
+}
+/* mobile — sem mudanças no fade */
+@media (max-width: 768px) {
+  .menuItem {
+    padding: 1rem 0.2rem 1rem 1rem;
+    margin-right: 1rem;
+  }
+}
