@@ -1,7 +1,14 @@
-import React from "react";
-import { NavLink } from "react-router";
-import styles from "./styles.module.css";
-import { ChevronDown } from "lucide-react";
+// src/components/MenuItem/MenuItem.tsx
+import React from 'react';
+import { NavLink } from 'react-router';
+import {
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 export type MenuItemProps = {
   label: string;
@@ -19,7 +26,7 @@ export type MenuItemProps = {
 export function MenuItem({
   label,
   icon,
-  to = "#",
+  to = '#',
   onClick,
   collapsed = false,
   isActive = false,
@@ -28,7 +35,7 @@ export function MenuItem({
   onToggle,
   level = 0,
 }: MenuItemProps) {
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick: React.MouseEventHandler<HTMLDivElement & HTMLAnchorElement> = (e) => {
     if (isGroup) {
       e.preventDefault();
       onToggle?.();
@@ -37,31 +44,50 @@ export function MenuItem({
     }
   };
 
-  const classList = [
-    styles.menuItem,
-    collapsed && styles.collapsed,
-    isActive && styles.active,
-    isGroup && styles.group,
-    expanded && styles.expanded,
-    level > 0 && styles[`level${level}`],
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const Component = to && !isGroup ? NavLink : 'div';
 
   return (
-    <NavLink
+    <ListItemButton
+      component={Component as any}
       to={to}
       onClick={handleClick}
-      className={classList}
-      end={!!to && !isGroup} // apenas links com rota usam o “end” para match exato
+      selected={isActive}
+      sx={{
+        px: collapsed ? 0 : 2,                      // sem padding horizontal quando colapsado
+        justifyContent: collapsed ? 'center' : 'flex-start',
+        textDecoration: 'none',
+      }}
     >
-      {icon && <span className={styles.icon}>{icon}</span>}
-      <span className={styles.label}>{label}</span>
-      {isGroup && (
-        <span className={styles.expandIcon}>
-          <ChevronDown strokeWidth={1} />
-        </span>
+      {icon && (
+        <ListItemIcon
+          sx={{
+            minWidth: 0,
+            mr: collapsed ? 0 : 2,
+            justifyContent: 'center',
+            '& svg, & i': {
+              fontSize: '1.5rem',
+            },
+          }}
+        >
+          {icon}
+        </ListItemIcon>
       )}
-    </NavLink>
+
+      {!collapsed && (
+        <ListItemText
+          primary={
+            <Typography variant="body1" noWrap sx={{ fontSize: '1rem' }}>
+              {label}
+            </Typography>
+          }
+        />
+      )}
+
+      {isGroup && !collapsed && (
+        expanded
+          ? <ExpandLess sx={{ fontSize: '1.5rem' }} />
+          : <ExpandMore sx={{ fontSize: '1.5rem' }} />
+      )}
+    </ListItemButton>
   );
 }

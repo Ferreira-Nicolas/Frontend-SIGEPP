@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router";
-import { MenuItem, type MenuItemProps } from "../MenuItem";
-import styles from "./styles.module.css";
+// src/components/MenuList/MenuList.tsx
+import React, { useState } from 'react';
+import { useLocation } from 'react-router';
+import { List, Collapse } from '@mui/material';
+import { MenuItem } from '../MenuItem/';
 
 export type SubItem = { label: string; to: string };
 export type MenuItemConfig = {
@@ -25,73 +26,66 @@ export function MenuList({
   onSidebarToggle,
 }: MenuListProps) {
   const location = useLocation();
-  const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
-  const toggleGroup = (label: string) =>
-    setExpandedGroup((prev) => (prev === label ? null : label));
-
-  const renderItem = (item: MenuItemConfig, level = 0): React.ReactNode => {
-    const isGroup = Boolean(item.subItems);
-    const isExpanded = expandedGroup === item.label;
-
-    //  ← só fica active se a rota bater exatamente no “to” ou em um sub.to
-    const isActiveGroup = item.to
-      ? location.pathname === item.to
-      : isGroup &&
-        item.subItems!.some((sub) => sub.to === location.pathname);
-
-    const handleToggle = () => {
-      if (collapsed) {
-        onSidebarToggle();
-      } else {
-        toggleGroup(item.label);
-      }
-    };
-
-    const miProps: MenuItemProps = {
-      label: item.label,
-      icon: item.icon,
-      to: item.to || "#",
-      onClick: () => {
-        if (!isGroup) onItemClick();
-      },
-      collapsed,
-      isActive: isActiveGroup,
-      isGroup,
-      expanded: isExpanded,
-      onToggle: handleToggle,
-      level,
-    };
-
-    const element = <MenuItem key={item.label} {...miProps} />;
-
-    // subitens só exibidos (com animação) quando a sidebar NÃO está colapsada
-    if (isGroup && !collapsed) {
-      return (
-        <React.Fragment key={item.label}>
-          {element}
-          <div className={`${styles.subList} ${isExpanded ? styles.open : ""}`}>
-            {item.subItems!.map((sub) => {
-              const isSubActive = location.pathname === sub.to;
-              return (
-                <MenuItem
-                  key={sub.label}
-                  label={sub.label}
-                  to={sub.to}
-                  onClick={onItemClick}
-                  collapsed={collapsed}
-                  isActive={isSubActive}
-                  level={level + 1}
-                />
-              );
-            })}
-          </div>
-        </React.Fragment>
-      );
+  const handleGroupClick = (item: MenuItemConfig) => {
+    if (collapsed) {
+      onSidebarToggle();
+      return;
     }
-
-    return element;
+    if (item.subItems) {
+      setExpanded((prev) => (prev === item.label ? null : item.label));
+    } else {
+      onItemClick();
+    }
   };
 
-  return <nav className={styles.menuList}>{items.map((i) => renderItem(i, 0))}</nav>;
+  return (
+    <List disablePadding>
+      {items.map((item) => {
+        const isActive = item.to
+          ? location.pathname === item.to
+          : !!item.subItems?.some((sub) => sub.to === location.pathname);
+        const isOpen = expanded === item.label;
+
+        return (
+          <React.Fragment key={item.label}>
+            <MenuItem
+              label={item.label}
+              icon={item.icon}
+              to={item.to}
+              onClick={() => handleGroupClick(item)}
+              collapsed={collapsed}
+              isActive={isActive}
+              isGroup={!!item.subItems}
+              expanded={isOpen}
+              onToggle={() => handleGroupClick(item)}
+              level={0}
+            />
+
+            {item.subItems && (
+              <Collapse in={isOpen && !collapsed} timeout="auto" unmountOnExit>
+                <List disablePadding>
+                  {item.subItems.map((sub) => {
+                    const isSubActive = location.pathname === sub.to;
+                    return (
+                      <MenuItem
+                        key={sub.label}
+                        label={sub.label}
+                        to={sub.to}
+                        onClick={onItemClick}
+                        collapsed={collapsed}
+                        isActive={isSubActive}
+                        level={1}
+                      />
+                    );
+                  })}
+                </List>
+              </Collapse>
+            )}
+          </React.Fragment>
+        );
+      })}
+    </List>
+  );
 }

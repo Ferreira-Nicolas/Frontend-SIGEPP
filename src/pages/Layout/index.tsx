@@ -1,10 +1,11 @@
-// src/components/Layout/Layout.tsx
-import React, { useState } from "react";
-import { Outlet } from "react-router";
+// src/compomnents/Layout/Layout.tsx
+import React, { useState } from 'react';
+import { Outlet } from 'react-router';
+import { Toolbar } from '@mui/material';
 
-import styles from "./styles.module.css";
-import { Header } from "../../compomnents/Header";
-import Sidebar from "../../compomnents/Siderbar";
+import styles from './styles.module.css';
+import { Header } from '../../compomnents/Header';
+import Sidebar from '../../compomnents/Siderbar';
 
 export function Layout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -21,6 +22,8 @@ export function Layout() {
           onMobileClose={() => setMobileOpen(false)}
         />
         <main className={styles.content}>
+          {/* Espaçador que empurra o <Outlet/> para baixo do AppBar */}
+          <Toolbar />
           <Outlet />
         </main>
       </div>
