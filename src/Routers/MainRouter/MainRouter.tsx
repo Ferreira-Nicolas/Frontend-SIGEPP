@@ -1,34 +1,51 @@
 // src/Routers/MainRouter.tsx
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
-import Login from "../../pages/Login"; // default export
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router';
+import Login from '../../pages/Login';
 
-import Home from "../../pages/Home"; // default export
-import BancoHoras from "../../pages/BancoHoras"; // default export
-import { Layout } from "../../pages/Layout";
-import { NotFound } from "../../pages/NotFound";
+import Home from '../../pages/Home';
+import BancoHoras from '../../pages/BancoHoras';
+
+import NotAuthorized from '../../pages/NotAuthorized';  // crie este
+
+import { Layout } from '../../pages/Layout';
+import { NotFound } from '../../pages/NotFound';
+import { RequireAuth } from '../RequireAuth';
 
 export function MainRouter() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* 1) ROTA DE LOGIN (fora do layout) */}
-        <Route path="/login" element={<Login />} />
+    <Routes>
+      {/* rota pública de login */}
+      <Route path="/login" element={<Login />} />
 
-        {/* 2) ROTAS PROTEGIDAS DENTRO DO LAYOUT */}
+      {/* rota para “não autorizado” */}
+      <Route path="/not-authorized" element={<NotAuthorized />} />
+
+      {/* Agrupa todas as rotas que exigem autenticação */}
+      <Route element={<RequireAuth />}>
+        {/* Dentro desse guard, monta o Layout com Header/Sidebar */}
         <Route path="/" element={<Layout />}>
-          {/* ao chegar em “/”, redireciona para /home */}
           <Route index element={<Navigate to="home" replace />} />
 
+          {/* rota livre para quem estiver logado */}
           <Route path="home" element={<Home />} />
+
+          {/* rota só para admins, por exemplo */}
+          <Route
+            path="banco-de-horas"
+            element={<RequireAuth allowedRoles={['Admin']} />}
+          >
+            <Route index element={<BancoHoras />} />
+          </Route>
+
+          {/* rota aberta para todos logados */}
           <Route path="clientes" element={<div>Clientes</div>} />
           <Route path="grupos" element={<div>Grupos</div>} />
-          <Route path="banco-de-horas" element={<BancoHoras />} />
-          {/* …outras rotas filhas */}
         </Route>
+      </Route>
 
-        {/* 3) QUALQUER OUTRA → 404 */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+      {/* qualquer outra → 404 */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

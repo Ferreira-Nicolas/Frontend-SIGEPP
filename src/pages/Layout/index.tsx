@@ -1,13 +1,13 @@
-// src/compomnents/Layout/Layout.tsx
+// src/components/Layout/Layout.tsx
 import React, { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router";   // ← react-router-dom
 import { Toolbar } from "@mui/material";
 
 import styles from "./styles.module.css";
 import { Header } from "../../compomnents/Header";
 import Sidebar from "../../compomnents/Siderbar";
 
-function Layout() {
+export function Layout() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,13 +22,10 @@ function Layout() {
           onMobileClose={() => setMobileOpen(false)}
         />
         <main className={styles.content}>
-          {/* Espaçador que empurra o <Outlet/> para baixo do AppBar */}
-          <Toolbar />
-          <Outlet />
+          <Toolbar />  {/* empurra o Outlet pra baixo do AppBar */}
+          <Outlet />   {/* só isso muda quando a rota filha muda */}
         </main>
       </div>
     </div>
   );
 }
-
-export { Layout };

@@ -1,6 +1,7 @@
-// src/compomnents/ProfileTab/index.tsx
+// src/components/ProfileTab/index.tsx
 import React from 'react';
 import { Box, Avatar, Typography, useTheme } from '@mui/material';
+import { useAuth } from '../../contexts/AuthContext';
 
 type ProfileTabProps = {
   collapsed: boolean;
@@ -8,14 +9,14 @@ type ProfileTabProps = {
 
 export default function ProfileTab({ collapsed }: ProfileTabProps) {
   const theme = useTheme();
+  const { user } = useAuth();  // aqui você já tem o User com name e role
 
   return (
     <Box
       sx={{
         display: 'flex',
-        
         alignItems: 'center',
-        justifyContent: collapsed ? 'center' : 'flex-start',  // ← centraliza quando colapsado
+        justifyContent: collapsed ? 'center' : 'flex-start',
         px: collapsed ? 1 : 2,
         py: collapsed ? 1 : 2,
         transition: theme.transitions.create(['justify-content', 'padding'], {
@@ -25,19 +26,18 @@ export default function ProfileTab({ collapsed }: ProfileTabProps) {
       }}
     >
       <Avatar
-        alt="Usuário"
-        // src="/path/to/avatar.jpg"          // ajuste para sua fonte de avatar
+        alt={user?.name}
+        src={user?.avatarPhoto}
         sx={{ width: 32, height: 32 }}
       />
 
-      {/* só exibe nome e cargo quando NÃO estiver colapsado */}
-      {!collapsed && (
+      {!collapsed && user && (
         <Box sx={{ ml: 2, overflow: 'hidden' }}>
-          <Typography sx={{ fontSize: '1.2rem' }} variant="subtitle1" noWrap>
-            Nicolas Ferreira
+          <Typography variant="subtitle1" noWrap sx={{ fontSize: '1.2rem' }}>
+            {user.name}
           </Typography>
-          <Typography sx={{ fontSize: '1rem' }} variant="body2" color="textSecondary" noWrap>
-            Desenvolvedor
+          <Typography variant="body2" color="text.secondary" noWrap sx={{ fontSize: '1rem' }}>
+            {user.role.name}
           </Typography>
         </Box>
       )}
