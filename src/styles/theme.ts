@@ -1,27 +1,74 @@
 // src/styles/theme.ts
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
-// tema claro
+const sharedShape = {
+  borderRadius: 8, // já está no seu theme
+};
+
+const sharedComponents = {
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: sharedShape.borderRadius,
+      },
+    },
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        borderRadius: sharedShape.borderRadius,
+      },
+    },
+  },
+  MuiFilledInput: {
+    styleOverrides: {
+      root: {
+        borderRadius: sharedShape.borderRadius,
+      },
+    },
+  },
+  MuiInputBase: {
+    styleOverrides: {
+      root: {
+        borderRadius: sharedShape.borderRadius,
+      },
+    },
+  },
+};
+
+// Fator de escala: 7px em vez de 8px
+const spacingUnit = 7;
+
 export const lightTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: '#40cc3b',
-      contrastText: '#fff',
+      main: "#40cc3b",
+      contrastText: "#fff",
     },
-    // o resto do palette (secondary, error, warning, info, success)
-//    fica com os defaults do MUI
   },
+  shape: sharedShape,
+  // 1) reduz a escala de espaçamento global (8px → 7px)
+  spacing: (factor: number) => `${spacingUnit * factor}px`,
+  // 2) diminui a base de tipografia (14px → 13px)
+  typography: {
+    fontSize: 13,
+  },
+  components: sharedComponents,
 });
 
-// tema escuro
 export const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#027a0a',
-      contrastText: '#fff',
+      main: "#027a0a",
+      contrastText: "#fff",
     },
-    // no modo dark, o MUI já define background.default ≈ #121212 e paper ≈ #1e1e1e
   },
+  shape: sharedShape,
+  spacing: (factor: number) => `${spacingUnit * factor}px`,
+  typography: {
+    fontSize: 13,
+  },
+  components: sharedComponents,
 });

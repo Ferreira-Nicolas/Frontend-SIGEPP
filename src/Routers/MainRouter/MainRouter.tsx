@@ -1,24 +1,18 @@
+// src/Routers/MainRouter.tsx
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import Login from "../../pages/Login"; // default export
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router";
-import BancoHoras from "../../pages/BancoHoras";
-import { Login } from "../../pages/Login";
-import { NotFound } from "../../pages/NotFound";
+import Home from "../../pages/Home"; // default export
+import BancoHoras from "../../pages/BancoHoras"; // default export
 import { Layout } from "../../pages/Layout";
-import Home from "../../pages/Home";
-
+import { NotFound } from "../../pages/NotFound";
 
 export function MainRouter() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* 1) ROTA DE LOGIN (fora do layout) */}
-        <Route path="/login" element={<Login children={undefined} />} />
+        <Route path="/login" element={<Login />} />
 
         {/* 2) ROTAS PROTEGIDAS DENTRO DO LAYOUT */}
         <Route path="/" element={<Layout />}>
@@ -34,7 +28,6 @@ export function MainRouter() {
 
         {/* 3) QUALQUER OUTRA → 404 */}
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </BrowserRouter>
   );
